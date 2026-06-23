@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Connect - Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+        <div class="container-fluid">
+
+                <a class="navbar-brand fw-bold" href="index.html">
+                    College Connect
+                </a>
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../profile page/index.html">
+                                Profile
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Help
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="../login page/index.html">
+                                Logout
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+        </div>
+    </nav>
+   
+        
+
+    <!-- Welcome Section -->
+    <section class="welcome-section container mt-4">
+        <h2>Welcome, Govardhan 👋</h2>
+        <p>Connect with your classmates, share updates, and discover opportunities in your college community.</p>
+    </section>
+
+    <!-- Create Post Section -->
+
+    <section class="container mt-4">
+
+        <div class="create-post-card">
+
+            <h4>Create Post</h4>
+
+            <textarea
+
+                id="postInput"
+
+                class="form-control mt-3"
+
+                rows="4"
+
+                placeholder="What's on your mind?"
+
+            ></textarea>
+
+            <div class="text-end mt-3">
+
+                <button id="postBtn" class="btn btn-post">
+
+                    Post
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Feed Section -->
+
+    <section class="container mt-5">
+
+        <h3 class="mb-3">Recent Posts</h3>
+
+        <div id="feedContainer">
+
+            <div class="card p-3 mb-3">
+
+                <h5>Rahul Kumar</h5>
+
+                <p class="text-muted">CSBS • 2 hours ago</p>
+
+                <p>Looking for teammates for SIH Hackathon.</p>
+
+            </div>
+
+            <div class="card p-3 mb-3">
+
+                <h5>Priya Sharma</h5>
+
+                <p class="text-muted">CSE • 5 hours ago</p>
+
+                <p>Completed Cisco Data Science Certification!</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Connect - Profile</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-4">My Profile</h1>
+
+        <div class="profile-card">
+
+            <!-- Basic Information -->
+
+            <h3 class="mb-3">Basic Information</h3>
+
+            <input
+                type="email"
+                class="form-control mb-3"
+                placeholder="Email ID"
+            >
+
+            <input
+                type="text"
+                class="form-control mb-3"
+                placeholder="Branch"
+            >
+
+            <input
+                type="text"
+                class="form-control mb-3"
+                placeholder="Year"
+            >
+
+            <input
+                type="text"
+                class="form-control mb-4"
+                placeholder="College Name"
+            >
+
+            <!-- About Me -->
+
+            <h3 class="mb-3">About Me</h3>
+
+            <textarea
+                class="form-control mb-4"
+                rows="4"
+                placeholder="Tell us about yourself..."
+            ></textarea>
+
+            <!-- Skills -->
+
+            <h3 class="mb-3">Skills</h3>
+
+            <div class="d-flex w-25 gap-2 mb-3">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Skill"
+                >
+
+                <button class="btn btn-primary">
+                    Add Skill
+                </button>
+            </div>
+
+            <div id="skillsContainer" class="mb-4">
+            </div>
+
+            <!-- Projects -->
+
+            <h3 class="mb-3">Projects</h3>
+
+            <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="Project Name"
+            >
+
+            <textarea
+                class="form-control mb-2"
+                rows="3"
+                placeholder="Project Description"
+            ></textarea>
+
+            <input
+                type="text"
+                class="form-control mb-3"
+                placeholder="GitHub Link"
+            >
+
+            <button class="btn btn-success mb-4">
+                Add Project
+            </button>
+
+            <div id="projectsContainer">
+            </div>
+
+            <!-- Certifications -->
+
+            <h3 class="mb-3">Certifications</h3>
+
+            <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="Certification Name"
+            >
+
+            <input
+                type="text"
+                class="form-control mb-3"
+                placeholder="Issued By"
+            >
+
+            <button class="btn btn-info mb-4">
+                Add Certification
+            </button>
+
+            <div id="certificationsContainer">
+            </div>
+
+            <!-- Activities -->
+
+            <h3 class="mb-3">Activities & Leadership</h3>
+
+            <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="Activity / Club / Role"
+            >
+
+            <textarea
+                class="form-control mb-3"
+                rows="3"
+                placeholder="Description"
+            ></textarea>
+
+            <button class="btn btn-warning mb-4">
+                Add Activity
+            </button>
+
+            <div id="activitiesContainer">
+            </div>
+
+            <button class="btn btn-primary mt-3" id="saveBtn">
+                Save Profile
+            </button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
