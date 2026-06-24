@@ -80,13 +80,15 @@ registerBtn.addEventListener("click", function () {
     // Success
     if (isValid) {
 
-    // Clear Form
-        fullName.value = "";
-        email.value = "";
-        userId.value = "";
-        password.value = "";
-        confirmPassword.value = "";
+    const userData = {
+        fullName: fullName.value,
+        email: email.value,
+        userId: userId.value,
+        password: password.value
+    };
 
-        window.location.href = "../profile page/index.html";
-    }
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    window.location.href = "../profile page/index.html";
+}
 });

@@ -14,146 +14,155 @@
 
         <h1 class="text-center mb-4">My Profile</h1>
 
-        <div class="profile-card">
+        <h3 class="mb-3">Basic Information</h3>
 
-            <!-- Basic Information -->
+        <input
+            id="email"
+            type="email"
+            class="form-control mb-3"
+            placeholder="Email ID"
+        >
 
-            <h3 class="mb-3">Basic Information</h3>
+        <input
+            id="branch"
+            type="text"
+            class="form-control mb-3"
+            placeholder="Branch"
+        >
 
+        <input
+            id="year"
+            type="text"
+            class="form-control mb-3"
+            placeholder="Year"
+        >
+
+        <input
+            id="college"
+            type="text"
+            class="form-control mb-4"
+            placeholder="College Name"
+        >
+
+        <h3 class="mb-3">About Me</h3>
+
+        <textarea
+            id="about"
+            class="form-control mb-4"
+            rows="4"
+            placeholder="Tell us about yourself..."
+        ></textarea>
+
+        <h3 class="mb-3">Skills</h3>
+
+        <div class="d-flex w-25 gap-2 mb-3">
             <input
-                type="email"
-                class="form-control mb-3"
-                placeholder="Email ID"
-            >
-
-            <input
+                id="skillInput"
                 type="text"
-                class="form-control mb-3"
-                placeholder="Branch"
+                class="form-control"
+                placeholder="Enter Skill"
             >
 
-            <input
-                type="text"
-                class="form-control mb-3"
-                placeholder="Year"
+            <button
+                id="addSkillBtn"
+                class="btn btn-primary"
             >
-
-            <input
-                type="text"
-                class="form-control mb-4"
-                placeholder="College Name"
-            >
-
-            <!-- About Me -->
-
-            <h3 class="mb-3">About Me</h3>
-
-            <textarea
-                class="form-control mb-4"
-                rows="4"
-                placeholder="Tell us about yourself..."
-            ></textarea>
-
-            <!-- Skills -->
-
-            <h3 class="mb-3">Skills</h3>
-
-            <div class="d-flex w-25 gap-2 mb-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Skill"
-                >
-
-                <button class="btn btn-primary">
-                    Add Skill
-                </button>
-            </div>
-
-            <div id="skillsContainer" class="mb-4">
-            </div>
-
-            <!-- Projects -->
-
-            <h3 class="mb-3">Projects</h3>
-
-            <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Project Name"
-            >
-
-            <textarea
-                class="form-control mb-2"
-                rows="3"
-                placeholder="Project Description"
-            ></textarea>
-
-            <input
-                type="text"
-                class="form-control mb-3"
-                placeholder="GitHub Link"
-            >
-
-            <button class="btn btn-success mb-4">
-                Add Project
-            </button>
-
-            <div id="projectsContainer">
-            </div>
-
-            <!-- Certifications -->
-
-            <h3 class="mb-3">Certifications</h3>
-
-            <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Certification Name"
-            >
-
-            <input
-                type="text"
-                class="form-control mb-3"
-                placeholder="Issued By"
-            >
-
-            <button class="btn btn-info mb-4">
-                Add Certification
-            </button>
-
-            <div id="certificationsContainer">
-            </div>
-
-            <!-- Activities -->
-
-            <h3 class="mb-3">Activities & Leadership</h3>
-
-            <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Activity / Club / Role"
-            >
-
-            <textarea
-                class="form-control mb-3"
-                rows="3"
-                placeholder="Description"
-            ></textarea>
-
-            <button class="btn btn-warning mb-4">
-                Add Activity
-            </button>
-
-            <div id="activitiesContainer">
-            </div>
-
-            <button class="btn btn-primary mt-3" id="saveBtn">
-                Save Profile
+                Add Skill
             </button>
         </div>
 
-    </div>
+        <div id="skillsContainer" class="mb-4"></div>
+
+        <h3 class="mb-3">Projects</h3>
+
+        <input
+            id="projectName"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Project Name"
+        >
+
+        <textarea
+            id="projectDescription"
+            class="form-control mb-2"
+            rows="3"
+            placeholder="Project Description"
+        ></textarea>
+
+        <input
+            id="githubLink"
+            type="text"
+            class="form-control mb-3"
+            placeholder="GitHub Link"
+        >
+
+        <button
+            id="addProjectBtn"
+            class="btn btn-success mb-4"
+        >
+            Add Project
+        </button>
+
+        <div id="projectsContainer"></div>
+
+        <h3 class="mb-3">Certifications</h3>
+
+        <input
+            id="certificationName"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Certification Name"
+        >
+
+        <input
+            id="issuedBy"
+            type="text"
+            class="form-control mb-3"
+            placeholder="Issued By"
+        >
+
+        <button
+            id="addCertificationBtn"
+            class="btn btn-info mb-4"
+        >
+            Add Certification
+        </button>
+
+        <div id="certificationsContainer"></div>
+
+        <h3 class="mb-3">Activities & Leadership</h3>
+
+        <input
+            id="activityName"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Activity / Club / Role"
+        >
+
+        <textarea
+            id="activityDescription"
+            class="form-control mb-3"
+            rows="3"
+            placeholder="Description"
+        ></textarea>
+
+        <button
+            id="addActivityBtn"
+            class="btn btn-warning mb-4"
+        >
+            Add Activity
+        </button>
+
+        <div id="activitiesContainer"></div>
+
+        <button
+            id="saveBtn"
+            class="btn btn-primary mt-3"
+        >
+            Save Profile
+        </button>
+
+            </div>
 
     <script src="script.js"></script>
 
