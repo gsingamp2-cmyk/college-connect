@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Connect - Student Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+        <div class="container-fluid">
+
+                <a class="navbar-brand fw-bold" href="index.html">
+                    College Connect
+                </a>
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../profile page/index.html">
+                                Profile
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../network page/index.html">
+                                Network
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Help
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="../login page/index.html">
+                                Logout
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+        </div>
+    </nav>
+
+    <!-- Student Profile -->
+
+    <div class="container my-5">
+        <h1 class="text-center mb-5">
+            Student Profile
+        </h1>
+        <!-- Basic Information -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h3 id="studentName"></h3>
+                <p>
+                    <strong>Email:</strong>
+                    <span id="studentEmail"></span>
+                </p>
+                <p>
+                    <strong>Branch:</strong>
+                    <span id="studentBranch"></span>
+                </p>
+                <p>
+                    <strong>Year:</strong>
+                    <span id="studentYear"></span>
+                </p>
+                <p>
+                    <strong>College:</strong>
+                    <span id="studentCollege"></span>
+                </p>
+            </div>
+        </div>
+        <!-- About -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h4>About</h4>
+
+                <p id="studentAbout"></p>
+
+            </div>
+
+        </div>
+
+        <!-- Skills -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h4>Skills</h4>
+
+                <div id="skillsContainer"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Projects -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h4>Projects</h4>
+
+                <div id="projectsContainer"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Certifications -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h4>Certifications</h4>
+
+                <div id="certificationsContainer"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Activities -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h4>Activities & Leadership</h4>
+
+                <div id="activitiesContainer"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

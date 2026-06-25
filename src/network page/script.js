@@ -43,6 +43,10 @@ function displayUsers(usersList) {
                             }
                         </div>
                     </div>
+                    <button
+                        class="btn btn-primary mt-3" onclick="viewProfile('${user.userId}')">
+                        View Profile
+                    </button>
                 </div>
             </div>
         `;
@@ -56,12 +60,23 @@ searchInput.addEventListener("input", function() {
     const filteredUsers = users.filter(function(user) {
         const name = user.fullName.toLowerCase();
         const branch = (user.profile.branch || "").toLowerCase();
+        const college = (user.profile.college || "").toLowerCase();
         const skills = (user.skills || []).join(" ").toLowerCase();
+        const year = (user.profile.year || "").toLowerCase();
         return (
             name.includes(searchText) ||
             branch.includes(searchText) ||
-            skills.includes(searchText)
+            college.includes(searchText) ||
+            skills.includes(searchText) ||
+            year.includes(searchText)
         );
     });
     displayUsers(filteredUsers);
 });
+
+
+
+function viewProfile(userId) {
+    localStorage.setItem("selectedUser", userId);
+    window.location.href = "../student profile page/index.html";
+}
