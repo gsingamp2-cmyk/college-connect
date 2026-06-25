@@ -9,3 +9,42 @@ body{
     box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     margin-bottom: 30px;
 }
+
+
+:root{
+    --primary-color:#8B2E2E;
+}
+
+.navbar{
+    background-color:var(--primary-color) !important;
+}
+
+.navbar-brand,
+.nav-link{
+    color:white !important;
+}
+
+.navbar-nav .nav-link:hover{
+    color:#f8d7da !important;
+}
+
+.navbar-nav .nav-link.active{
+    font-weight:bold;
+    border-bottom:2px solid white;
+}
+
+.navbar-nav .text-danger{
+    color:#ffd6d6 !important;
+}
+
+
+.btn-brown{
+    background-color: brown;
+    color: white;
+}
+
+.skillclass{
+    background-color: brown;
+    color: white;
+
+}

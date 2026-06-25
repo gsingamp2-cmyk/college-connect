@@ -33,7 +33,7 @@ function displaySkills() {
         const skillBadge = document.createElement("span");
 
         skillBadge.className =
-            "badge bg-primary me-2 mb-2";
+            "badge skillclass me-2 mb-2";
 
         skillBadge.innerHTML = `
             ${skill}
@@ -48,6 +48,12 @@ function displaySkills() {
 }
 
 function deleteSkill(index) {
+
+    const confirmDelete = confirm("Are you sure you want to delete this skill?");
+
+    if (!confirmDelete) {
+        return;
+    }
 
     skills.splice(index, 1);
 
@@ -108,11 +114,20 @@ function displayProjects() {
 }
 
 function deleteProject(index) {
+
+    const confirmDelete = confirm("Are you sure you want to delete this project?");
+
+    if (!confirmDelete) {
+        return;
+    }
+
     projects.splice(index, 1);
+
     localStorage.setItem(
         "projects",
         JSON.stringify(projects)
     );
+
     displayProjects();
 }
 
@@ -182,13 +197,25 @@ addCertificationBtn.addEventListener("click", function() {
 
 
 function deleteCertification(index) {
+
+    const confirmDelete = confirm("Are you sure you want to delete this certification?");
+
+    if (!confirmDelete) {
+        return;
+    }
+
     certifications.splice(index, 1);
+
     localStorage.setItem(
         "certifications",
         JSON.stringify(certifications)
     );
+
     displayCertifications();
 }
+
+
+
 displayCertifications();
 
 
@@ -239,13 +266,23 @@ addActivityBtn.addEventListener("click", function() {
 });
 
 function deleteActivity(index) {
+
+    const confirmDelete = confirm("Are you sure you want to delete this activity?");
+
+    if (!confirmDelete) {
+        return;
+    }
+
     activities.splice(index, 1);
+
     localStorage.setItem(
         "activities",
         JSON.stringify(activities)
     );
+
     displayActivities();
 }
+
 displayActivities();
 
 
