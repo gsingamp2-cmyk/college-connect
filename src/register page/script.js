@@ -79,16 +79,40 @@ registerBtn.addEventListener("click", function () {
 
     // Success
     if (isValid) {
-
-    const userData = {
+        const userData = {
         fullName: fullName.value,
         email: email.value,
         userId: userId.value,
-        password: password.value
+        password: password.value,
+
+        profile: {
+            branch: "",
+            year: "",
+            college: "",
+            about: ""
+        },
+
+        skills: [],
+        projects: [],
+        certifications: [],
+        activities: [],
+
+        posts: []
     };
-
-    localStorage.setItem("user", JSON.stringify(userData));
-
-    window.location.href = "../profile page/index.html";
-}
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const userExists = users.find(function(user) {
+            return user.userId === userData.userId;
+        });
+        if (userExists) {
+            userIdError.textContent = "User ID already exists";
+            return;
+        }
+        users.push(userData);
+        localStorage.setItem("users", JSON.stringify(users));
+        // Temporary (for compatibility with existing pages)
+        localStorage.setItem("user", JSON.stringify(userData));
+        // We'll use this in Phase 2
+        localStorage.setItem("loggedInUser", userData.userId);
+        window.location.href = "../profile page/index.html";
+    }
 });

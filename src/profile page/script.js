@@ -1,20 +1,30 @@
-const userData = JSON.parse(localStorage.getItem("user"));
+const loggedInUser = localStorage.getItem("loggedInUser");
 
-if (userData) {
-    document.getElementById("email").value = userData.email;
+const users = JSON.parse(localStorage.getItem("users")) || [];
+
+const currentUser = users.find(function(user) {
+    return user.userId === loggedInUser;
+});
+
+if (currentUser) {
+
+    document.getElementById("email").value = currentUser.email;
+
+    document.getElementById("branch").value =
+        currentUser.profile.branch;
+
+    document.getElementById("year").value =
+        currentUser.profile.year;
+
+    document.getElementById("college").value =
+        currentUser.profile.college;
+
+    document.getElementById("about").value =
+        currentUser.profile.about;
 }
 
-const profileData = JSON.parse(localStorage.getItem("profile"));
-
-if (profileData) {
-    document.getElementById("branch").value = profileData.branch || "";
-    document.getElementById("year").value = profileData.year || "";
-    document.getElementById("college").value = profileData.college || "";
-    document.getElementById("about").value = profileData.about || "";
-}
-
-console.log(userData);
-console.log(profileData);
+console.log(currentUser);
+console.log(currentUser.profile);
 
 
 
@@ -22,7 +32,7 @@ console.log(profileData);
 const skillInput = document.getElementById("skillInput");
 const addSkillBtn = document.getElementById("addSkillBtn");
 const skillsContainer = document.getElementById("skillsContainer");
-let skills = JSON.parse(localStorage.getItem("skills")) || [];
+let skills = currentUser.skills;
 
 function displaySkills() {
 
@@ -48,20 +58,16 @@ function displaySkills() {
 }
 
 function deleteSkill(index) {
-
     const confirmDelete = confirm("Are you sure you want to delete this skill?");
-
     if (!confirmDelete) {
         return;
     }
-
     skills.splice(index, 1);
-
+    currentUser.skills = skills;
     localStorage.setItem(
-        "skills",
-        JSON.stringify(skills)
+        "users",
+        JSON.stringify(users)
     );
-
     displaySkills();
 }
 
@@ -71,14 +77,17 @@ addSkillBtn.addEventListener("click", function() {
         return;
     }
     skills.push(skill);
+    currentUser.skills = skills;
     localStorage.setItem(
-        "skills",
-        JSON.stringify(skills)
+        "users",
+        JSON.stringify(users)
     );
     displaySkills();
     skillInput.value = "";
 });
 displaySkills();
+
+
 
 
 
@@ -88,7 +97,7 @@ const githubLink = document.getElementById("githubLink");
 const addProjectBtn = document.getElementById("addProjectBtn");
 const projectsContainer = document.getElementById("projectsContainer");
 
-let projects = JSON.parse(localStorage.getItem("projects")) || [];
+let projects = currentUser.projects;
 
 function displayProjects() {
     projectsContainer.innerHTML = "";
@@ -114,33 +123,38 @@ function displayProjects() {
 }
 
 function deleteProject(index) {
-
     const confirmDelete = confirm("Are you sure you want to delete this project?");
-
     if (!confirmDelete) {
         return;
     }
-
     projects.splice(index, 1);
-
+    currentUser.projects = projects;
     localStorage.setItem(
-        "projects",
-        JSON.stringify(projects)
+        "users",
+        JSON.stringify(users)
     );
-
     displayProjects();
 }
 
 addProjectBtn.addEventListener("click", function() {
     const project = {
-        name: projectName.value,
-        description: projectDescription.value,
-        github: githubLink.value
+        name: projectName.value.trim(),
+        description: projectDescription.value.trim(),
+        github: githubLink.value.trim()
     };
+    if (
+        project.name === "" ||
+        project.description === "" ||
+        project.github === ""
+    ) {
+        alert("Please fill all project details.");
+        return;
+    }
     projects.push(project);
+    currentUser.projects = projects;
     localStorage.setItem(
-        "projects",
-        JSON.stringify(projects)
+        "users",
+        JSON.stringify(users)
     );
     displayProjects();
     projectName.value = "";
@@ -153,13 +167,14 @@ displayProjects();
 
 
 
+
+
 const certificationName = document.getElementById("certificationName");
 const issuedBy = document.getElementById("issuedBy");
 const addCertificationBtn = document.getElementById("addCertificationBtn");
 const certificationsContainer = document.getElementById("certificationsContainer");
 
-let certifications =
-    JSON.parse(localStorage.getItem("certifications")) || [];
+let certifications = currentUser.certifications;
 
 function displayCertifications() {
     certificationsContainer.innerHTML = "";
@@ -182,40 +197,40 @@ function displayCertifications() {
 
 addCertificationBtn.addEventListener("click", function() {
     const certification = {
-        name: certificationName.value,
-        issuer: issuedBy.value
+        name: certificationName.value.trim(),
+        issuer: issuedBy.value.trim()
     };
+    if (
+        certification.name === "" ||
+        certification.issuer === ""
+    ) {
+        alert("Please fill all certification details.");
+        return;
+    }
     certifications.push(certification);
+    currentUser.certifications = certifications;
     localStorage.setItem(
-        "certifications",
-        JSON.stringify(certifications)
+        "users",
+        JSON.stringify(users)
     );
     displayCertifications();
     certificationName.value = "";
     issuedBy.value = "";
 });
 
-
 function deleteCertification(index) {
-
     const confirmDelete = confirm("Are you sure you want to delete this certification?");
-
     if (!confirmDelete) {
         return;
     }
-
     certifications.splice(index, 1);
-
+    currentUser.certifications = certifications;
     localStorage.setItem(
-        "certifications",
-        JSON.stringify(certifications)
+        "users",
+        JSON.stringify(users)
     );
-
     displayCertifications();
 }
-
-
-
 displayCertifications();
 
 
@@ -228,8 +243,7 @@ const activityDescription = document.getElementById("activityDescription");
 const addActivityBtn = document.getElementById("addActivityBtn");
 const activitiesContainer = document.getElementById("activitiesContainer");
 
-let activities =
-    JSON.parse(localStorage.getItem("activities")) || [];
+let activities = currentUser.activities;
 
 function displayActivities() {
     activitiesContainer.innerHTML = "";
@@ -252,13 +266,21 @@ function displayActivities() {
 
 addActivityBtn.addEventListener("click", function() {
     const activity = {
-        name: activityName.value,
-        description: activityDescription.value
+        name: activityName.value.trim(),
+        description: activityDescription.value.trim()
     };
+    if (
+        activity.name === "" ||
+        activity.description === ""
+    ) {
+        alert("Please fill all activity details.");
+        return;
+    }
     activities.push(activity);
+    currentUser.activities = activities;
     localStorage.setItem(
-        "activities",
-        JSON.stringify(activities)
+        "users",
+        JSON.stringify(users)
     );
     displayActivities();
     activityName.value = "";
@@ -266,23 +288,18 @@ addActivityBtn.addEventListener("click", function() {
 });
 
 function deleteActivity(index) {
-
     const confirmDelete = confirm("Are you sure you want to delete this activity?");
-
     if (!confirmDelete) {
         return;
     }
-
     activities.splice(index, 1);
-
+    currentUser.activities = activities;
     localStorage.setItem(
-        "activities",
-        JSON.stringify(activities)
+        "users",
+        JSON.stringify(users)
     );
-
     displayActivities();
 }
-
 displayActivities();
 
 
@@ -300,18 +317,16 @@ displayActivities();
 const saveBtn = document.getElementById("saveBtn");
 
 saveBtn.addEventListener("click", function () {
-
-    const profileData = {
-        email: document.getElementById("email").value,
+    currentUser.profile = {
         branch: document.getElementById("branch").value,
         year: document.getElementById("year").value,
         college: document.getElementById("college").value,
         about: document.getElementById("about").value
     };
-
-    console.log(profileData);
-
-    localStorage.setItem("profile", JSON.stringify(profileData));
-
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
     window.location.href = "../profile page/index.html";
+
 });
