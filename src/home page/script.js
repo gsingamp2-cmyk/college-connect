@@ -20,9 +20,14 @@ if (currentUser) {
 
 const postBtn = document.getElementById("postBtn");
 const postInput = document.getElementById("postInput");
+const imageInput = document.getElementById("imageInput");
 const feedContainer = document.getElementById("feedContainer");
 
 let posts = currentUser.posts;
+
+
+
+
 
 function getTimeAgo(timestamp) {
     const seconds = Math.floor((Date.now() - timestamp) / 1000);
@@ -43,17 +48,32 @@ function getTimeAgo(timestamp) {
 
 function displayPosts() {
     feedContainer.innerHTML = "";
-    posts.slice().reverse().forEach(function(post) {
+    let allPosts = [];
+    users.forEach(function(user) {
+        user.posts.forEach(function(post) {
+            allPosts.push(post);
+        });
+    });
+    allPosts.sort(function(a, b) {
+        return b.time - a.time;
+    });
+    allPosts.forEach(function(post) {
         const postCard = document.createElement("div");
-        postCard.className = "card p-3 mb-3";
+        postCard.className = "card shadow mb-4";
         postCard.innerHTML = `
-            <h5>${post.name}</h5>
-            <p class="text-muted">${getTimeAgo(post.time)}</p>
-            <p>${post.content}</p>
+            <div class="card-header text-white" style="background-color:#8B2E2E;">
+                <h5 class="mb-0">${post.name}</h5>
+                <small>${getTimeAgo(post.time)}</small>
+            </div>
+            <div class="card-body">
+                ${post.image ? `<img src="${post.image}" class="post-image img-fluid rounded mt-2">` : ""}
+                <p class="card-text">${post.content}</p>
+            </div>
         `;
         feedContainer.appendChild(postCard);
     });
 }
+
 
 postBtn.addEventListener("click", function() {
     const postText = postInput.value.trim();
@@ -61,11 +81,38 @@ postBtn.addEventListener("click", function() {
         alert("Please enter a post");
         return;
     }
-    const newPost = {
-        name: currentUser.fullName,
-        content: postText,
-        time: Date.now()
-    };
+    const file = imageInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const newPost = {
+                name: currentUser.fullName,
+                content: postText,
+                image: reader.result,
+                time: Date.now()
+            };
+            posts.push(newPost);
+            currentUser.posts = posts;
+            localStorage.setItem("users", JSON.stringify(users));
+            displayPosts();
+            postInput.value = "";
+            imageInput.value = "";
+        };
+        reader.readAsDataURL(file);
+    }
+    else {
+        const newPost = {
+            name: currentUser.fullName,
+            content: postText,
+            image: "",
+            time: Date.now()
+        };
+        posts.push(newPost);
+        currentUser.posts = posts;
+        localStorage.setItem("users", JSON.stringify(users));
+        displayPosts();
+        postInput.value = "";
+    }
     posts.push(newPost);
     currentUser.posts = posts;
     localStorage.setItem(

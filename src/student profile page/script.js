@@ -37,7 +37,7 @@ function displaySkills() {
     viewedUser.skills.forEach(function(skill) {
         const badge = document.createElement("span");
         badge.className =
-            "badge bg-primary me-2 mb-2";
+            "badge bg-brown me-2 mb-2";
         badge.textContent = skill;
         skillsContainer.appendChild(badge);
     });

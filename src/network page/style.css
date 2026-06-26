@@ -42,3 +42,8 @@ body{
 .student-card:hover{
     transform:translateY(-5px);
 }
+
+.btn-brown{
+    background-color: #9e2f2f;
+    color: white;
+}

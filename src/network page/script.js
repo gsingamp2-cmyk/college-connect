@@ -33,7 +33,7 @@ function displayUsers(usersList) {
                                 ?
                                 user.skills.map(function(skill) {
                                     return `
-                                        <span class="badge bg-primary me-1 mb-1">
+                                        <span class="badge btn-brown me-1 mb-1">
                                             ${skill}
                                         </span>
                                     `;
@@ -44,7 +44,7 @@ function displayUsers(usersList) {
                         </div>
                     </div>
                     <button
-                        class="btn btn-primary mt-3" onclick="viewProfile('${user.userId}')">
+                        class="btn btn-brown mt-3" onclick="viewProfile('${user.userId}')">
                         View Profile
                     </button>
                 </div>

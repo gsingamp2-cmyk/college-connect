@@ -14,7 +14,7 @@
 <body>
 
     <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
         <div class="container-fluid">
 
                 <a class="navbar-brand fw-bold" href="index.html">
@@ -38,7 +38,7 @@
                     <ul class="navbar-nav ms-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.html">
+                            <a class="nav-link active" href="../home page/index.html">
                                 Home
                             </a>
                         </li>
@@ -85,70 +85,23 @@
     <!-- Create Post Section -->
 
     <section class="container mt-4">
-
         <div class="create-post-card">
-
             <h4>Create Post</h4>
-
-            <textarea
-
-                id="postInput"
-
-                class="form-control mt-3"
-
-                rows="4"
-
-                placeholder="What's on your mind?"
-
-            ></textarea>
-
+            <input type="file" id="imageInput" class="form-control my-3" accept="image/*" >
+            <textarea id="postInput" class="form-control mt-3" rows="4" placeholder="What's on your mind?" ></textarea>
             <div class="text-end mt-3">
-
-                <button id="postBtn" class="btn btn-post">
-
-                    Post
-
-                </button>
-
+                <button id="postBtn" class="btn btn-post"> Post </button>
             </div>
-
         </div>
-
     </section>
 
     <!-- Feed Section -->
 
     <section class="container mt-5">
+        <h2 class="mb-4 recent">Recent Posts</h2>
 
-        <h3 class="mb-3">Recent Posts</h3>
-
-        <div id="feedContainer">
-
-            <div class="card p-3 mb-3">
-
-                <h5>Rahul Kumar</h5>
-
-                <p class="text-muted">CSBS • 2 hours ago</p>
-
-                <p>Looking for teammates for SIH Hackathon.</p>
-
-            </div>
-
-            <div class="card p-3 mb-3">
-
-                <h5>Priya Sharma</h5>
-
-                <p class="text-muted">CSE • 5 hours ago</p>
-
-                <p>Completed Cisco Data Science Certification!</p>
-
-            </div>
-
-        </div>
-
+        <div id="feedContainer" class="feed-container"></div>
     </section>
-
-
 
 
 
