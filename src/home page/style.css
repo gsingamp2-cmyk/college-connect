@@ -125,3 +125,61 @@ body{
 .card-text{
     margin-top:15px;
 }
+
+.post-header{
+    background-color:#8B2E2E;
+}
+
+
+.post-actions{
+    display:flex;
+    gap:30px;
+    align-items:center;
+    margin-bottom:15px;
+    font-weight:500;
+}
+
+.post-actions span{
+    cursor:pointer;
+    color:#666;
+    transition:0.3s;
+    user-select:none;
+}
+
+.post-actions span:hover{
+    color:#8B2E2E;
+}
+
+.liked{
+    color:#8B2E2E;
+    font-weight:bold;
+}
+
+.comment-box{
+    background:#f8f8f8;
+    border-left:4px solid #8B2E2E;
+    border-radius:8px;
+    padding:10px 15px;
+    margin-bottom:10px;
+}
+
+.comment-box strong{
+    color:#8B2E2E;
+}
+
+.delete-comment {
+    cursor: pointer;
+    color: #8B2E2E;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.delete-comment:hover {
+    transform: scale(1.15);
+}
+
+.comment-time{
+    color:#777;
+    font-size:12px;
+    margin-left:8px;
+}

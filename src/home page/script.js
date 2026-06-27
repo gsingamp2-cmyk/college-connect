@@ -14,19 +14,12 @@ if (currentUser) {
 }
 
 
-
-
-
-
 const postBtn = document.getElementById("postBtn");
 const postInput = document.getElementById("postInput");
 const imageInput = document.getElementById("imageInput");
 const feedContainer = document.getElementById("feedContainer");
 
 let posts = currentUser.posts;
-
-
-
 
 
 function getTimeAgo(timestamp) {
@@ -48,30 +41,99 @@ function getTimeAgo(timestamp) {
 
 function displayPosts() {
     feedContainer.innerHTML = "";
+
     let allPosts = [];
+
     users.forEach(function(user) {
-        user.posts.forEach(function(post) {
+        (user.posts || []).forEach(function(post) {
+
+            if (!post.likes) {
+                post.likes = [];
+            }
+
+            if (!post.comments) {
+                post.comments = [];
+            }
+
             allPosts.push(post);
+
         });
     });
+
     allPosts.sort(function(a, b) {
         return b.time - a.time;
     });
+
     allPosts.forEach(function(post) {
-        const postCard = document.createElement("div");
-        postCard.className = "card shadow mb-4";
-        postCard.innerHTML = `
-            <div class="card-header text-white" style="background-color:#8B2E2E;">
-                <h5 class="mb-0">${post.name}</h5>
-                <small>${getTimeAgo(post.time)}</small>
+    const liked = post.likes.includes(currentUser.userId);
+
+    const postCard = document.createElement("div");
+
+    postCard.className = "card shadow mb-4";
+
+    postCard.innerHTML = `
+        <div class="card-header text-white post-header">
+            <h5 class="mb-0">${post.name}</h5>
+            <small>${getTimeAgo(post.time)}</small>
+        </div>
+
+        <div class="card-body">
+            ${post.image ? `<img src="${post.image}" class="post-image img-fluid rounded mt-2">` : ""}
+            <p class="card-text">${post.content}</p>
+        </div>
+
+        <div class="card-footer bg-white">
+
+            <div class="post-actions">
+
+                <span class="${liked ? "liked" : ""}" onclick="toggleLike(${post.id})">
+                    ${liked ? "♥" : "♡"} ${post.likes.length} 
+                </span>
+
+                <span onclick="showComments(${post.id})">
+                    💬 ${post.comments.length}
+                </span>
+
+                ${post.name === currentUser.fullName ? `
+                    <span onclick="deletePost(${post.id})">
+                        🗑
+                    </span>
+                ` : ""}
+
             </div>
-            <div class="card-body">
-                ${post.image ? `<img src="${post.image}" class="post-image img-fluid rounded mt-2">` : ""}
-                <p class="card-text">${post.content}</p>
+
+            <div class="mt-3">
+                <input type="text" id="comment-${post.id}" class="form-control" placeholder="Write a comment...">
+                <button type="button" class="btn btn-post mt-2" onclick="addComment(${post.id})">Add Comment</button>
             </div>
-        `;
-        feedContainer.appendChild(postCard);
+
+            <div class="mt-3">
+                ${(post.comments || []).map(function(comment, index) {
+                    return `
+                        <div class="comment-box d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>${comment.name}</strong>
+                                <small class="comment-time">
+                                    ${comment.time ? getTimeAgo(comment.time) : ""}
+                                </small><br>
+                                ${comment.text}
+                            </div>
+
+                            ${comment.name === currentUser.fullName ? `
+                                <span class="delete-comment" onclick="deleteComment(${post.id}, ${index})">
+                                    🗑
+                                </span>
+                            ` : ""}
+                        </div>
+                    `;
+                }).join("")}
+            </div>
+        </div>
+    `;
+
+    feedContainer.appendChild(postCard);
     });
+
 }
 
 
@@ -81,15 +143,21 @@ postBtn.addEventListener("click", function() {
         alert("Please enter a post");
         return;
     }
+
     const file = imageInput.files[0];
+
     if (file) {
         const reader = new FileReader();
+
         reader.onload = function() {
             const newPost = {
+                id: Date.now(),
                 name: currentUser.fullName,
                 content: postText,
                 image: reader.result,
-                time: Date.now()
+                time: Date.now(),
+                likes: [],
+                comments: []
             };
             posts.push(newPost);
             currentUser.posts = posts;
@@ -98,14 +166,17 @@ postBtn.addEventListener("click", function() {
             postInput.value = "";
             imageInput.value = "";
         };
+
         reader.readAsDataURL(file);
-    }
-    else {
+    } else {
         const newPost = {
+            id: Date.now(),
             name: currentUser.fullName,
             content: postText,
             image: "",
-            time: Date.now()
+            time: Date.now(),
+            likes: [],
+            comments: []
         };
         posts.push(newPost);
         currentUser.posts = posts;
@@ -113,14 +184,107 @@ postBtn.addEventListener("click", function() {
         displayPosts();
         postInput.value = "";
     }
-    posts.push(newPost);
-    currentUser.posts = posts;
+});
+
+displayPosts();
+
+function toggleLike(postId) {
+    users.forEach(function(user) {
+        user.posts.forEach(function(post) {
+            if (post.id === postId) {
+
+                if (!post.likes) {
+                    post.likes = [];
+                }
+
+                const alreadyLiked = post.likes.includes(currentUser.userId);
+
+                if (alreadyLiked) {
+                    post.likes = post.likes.filter(function(id) {
+                        return id !== currentUser.userId;
+                    });
+                } else {
+                    post.likes.push(currentUser.userId);
+                }
+
+            }
+        });
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+    displayPosts();
+}
+
+
+
+function deletePost(postId) {
+
+    const confirmDelete = confirm("Are you sure you want to delete this post?");
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    currentUser.posts = currentUser.posts.filter(function(post) {
+        return post.id !== postId;
+    });
+
+    posts = currentUser.posts;
+
     localStorage.setItem(
         "users",
         JSON.stringify(users)
     );
-    displayPosts();
-    postInput.value = "";
-});
 
-displayPosts();
+    displayPosts();
+
+}
+
+
+function addComment(postId) {
+
+    const commentInput = document.getElementById(`comment-${postId}`);
+    const commentText = commentInput.value.trim();
+
+
+    if (commentText === "") {
+        alert("Empty");
+        return;
+    }
+
+    users.forEach(function(user) {
+        (user.posts || []).forEach(function(post) {
+            if (post.id === postId) {
+
+                if (!post.comments) {
+                    post.comments = [];
+                }
+
+                post.comments.unshift({
+                    name: currentUser.fullName,
+                    text: commentText,
+                    time: Date.now()
+                });
+            }
+        });
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+    displayPosts();
+}
+
+
+
+function deleteComment(postId, commentIndex) {
+    alert("Are you sure you want to delete the comment");
+    users.forEach(function(user) {
+        (user.posts || []).forEach(function(post) {
+            if (post.id === postId) {
+                post.comments.splice(commentIndex, 1);
+            }
+        });
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+    displayPosts();
+}
